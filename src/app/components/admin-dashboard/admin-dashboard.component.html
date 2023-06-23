@@ -1,0 +1,51 @@
+<div class="h-full font-mono flex flex-col">
+    <div class="bg-blue-600 text-white text-3xl p-2 flex flex-row">
+        <button (click)="open()">
+            <mat-icon *ngIf="!isOpen">menu</mat-icon>
+            <mat-icon *ngIf="isOpen">cancel</mat-icon>
+        </button>
+        <div class="w-full text-center">
+            <p>ADMIN PANEL</p>
+        </div>
+    </div>
+    <div class="flex-1">
+        <mat-sidenav-container class="h-full">
+            <mat-sidenav [(opened)]="isOpen" mode="side" class="bg-blue-600 w-1/5">
+                <div class="h-full text-white">
+                    <div class="py-10 text-2xl text-center">AdictoVibes</div>
+                    <div class="text-xl px-12">
+                        <div class="flex flex-row py-2">
+                            <button mat-button (click)="selectItem('users')">
+                                <mat-icon>tag_faces</mat-icon>
+                                <div class="pl-3">
+                                    View Users
+                                </div>
+                            </button>
+                        </div>
+                        <div class="flex flex-row py-2">
+                            <button mat-button (click)="selectItem('orders')">
+                                <mat-icon>local_shipping</mat-icon>
+                                <div class="pl-3">
+                                    View Orders
+                                </div>
+                            </button>
+                        </div>
+                        <div class="flex flex-row py-2">
+                            <button mat-button (click)="selectItem('products')">
+                                <mat-icon>shopping_cart</mat-icon>
+                                <div class="pl-3">
+                                    View Products
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <app-view-users *ngIf="selectedItem === 'users'"></app-view-users>
+                <app-view-orders *ngIf="selectedItem === 'orders'"></app-view-orders>
+                <app-view-products *ngIf="selectedItem === 'products'"></app-view-products>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<mat-drawer-container class="h-full">
+    <mat-drawer class="p-10 bg-blue-600 text-white" mode="side" [opened]="isOpen">
+        <div class="flex flex-col justify-between h-1/3">
+            <div class="text-center">
+                <p class="text-2xl">Adictovibes</p>
+            </div>
+            <div class="text-xl">
+                <div class="flex flex-row py-2">
+                    <button mat-button (click)="selectItem('users')">
+                        <mat-icon>tag_faces</mat-icon>
+                        <div class="pl-3">
+                            View Users
+                        </div>
+                    </button>
+                    <!-- <p class="pl-5">View Users</p> -->
+                </div>
+                <div class="flex flex-row py-2">
+                    <button mat-button (click)="selectItem('orders')">
+                        <mat-icon>local_shipping</mat-icon>
+                        <div class="pl-3">
+                            View Orders
+                        </div>
+                    </button>
+                </div>
+                <div class="flex flex-row py-2">
+                    <button mat-button (click)="selectItem('products')">
+                        <mat-icon>shopping_cart</mat-icon>
+                        <div class="pl-3">
+                            View Products
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-drawer>
+
+</mat-drawer-container>
+

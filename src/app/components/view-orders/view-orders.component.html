@@ -1,0 +1,49 @@
+<div>
+    <div>
+        <p class="m-5">Order List</p>
+    </div>
+    <div class="mx-5 mt-10 ">
+        <table mat-table [dataSource]="dataSource" class="w-full max-w-full overflow-x-auto">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No.</th>
+                <td mat-cell *matCellDef="let i=index">{{ i+1 }}</td>
+            </ng-container>
+            <ng-container matColumnDef="order_by">
+                <th mat-header-cell *matHeaderCellDef>Order_By</th>
+                <td mat-cell *matCellDef="let element">{{ element.order_by }}</td>
+            </ng-container>
+            <ng-container matColumnDef="order_amount">
+                <th mat-header-cell *matHeaderCellDef>Order_amount</th>
+                <td mat-cell *matCellDef="let element">{{ element.order_amount }}</td>
+            </ng-container>
+            <ng-container matColumnDef="order_item">
+                <th mat-header-cell *matHeaderCellDef>Order_item</th>
+                <td mat-cell *matCellDef="let element">
+                    <ul>
+                        <li *ngFor="let item of element.order_item">
+                            <div class="flex flex-row">
+                                <div>{{item.product_id}}</div>
+                                <div>( {{item.quantity}} )</div>
+                            </div>
+                        </li>
+                    </ul>
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let i=index; let element">
+                    <button class="bg-red-400 p-1 shadow rounded text-white" (click)="removeItem(element._id, i)">Remove</button>
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+            pageSize="5"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

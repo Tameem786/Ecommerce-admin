@@ -1,0 +1,128 @@
+<div>
+    <div>
+        <p class="m-5">Product List</p>
+    </div>
+    <div class="m-5">
+        <form class="w-full max-w-lg" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                  Product Name
+                </label>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="Shirt..." formControlName="productName">
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                    Product Price
+                </label>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="number" placeholder="0.00" formControlName="productPrice">
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                  Image URL
+                </label>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="shirts/1.jpg" formControlName="productUrl">
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-2">
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                    Product Color
+                  </label>
+                  <div class="relative">
+                    <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" formControlName="productColor">
+                        <option>Black</option>
+                        <option>Blue</option>
+                        <option>Red</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                  </div>
+              </div>
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                  Product Size
+                </label>
+                <div class="relative">
+                  <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" formControlName="productSize">
+                    <option>S</option>
+                    <option>L</option>
+                    <option>XL</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                    Product Tag
+                  </label>
+                  <div class="relative">
+                    <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" formControlName="productTag">
+                      <option>Shirt</option>
+                      <option>Socks</option>
+                      <option>Hoodie</option>
+                      <option>Pant</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <button type="submit" class="bg-blue-600 text-white p-2 rounded">Add New Product</button>
+          </form>
+    </div>
+    <div class="mx-5 mt-10 overflow-auto">
+        <table mat-table [dataSource]="dataSource" class="w-full">
+            <ng-container matColumnDef="position">
+                <th mat-header-cell *matHeaderCellDef> No.</th>
+                <td mat-cell *matCellDef="let i=index">{{ i+1 }}</td>
+            </ng-container>
+            <ng-container matColumnDef="product_name">
+                <th mat-header-cell *matHeaderCellDef>Product_name</th>
+                <td mat-cell *matCellDef="let element">{{ element.product_name }}</td>
+            </ng-container>
+            <ng-container matColumnDef="product_color">
+                <th mat-header-cell *matHeaderCellDef>Product_color</th>
+                <td mat-cell *matCellDef="let element">{{ element.product_color }}</td>
+            </ng-container>
+            <ng-container matColumnDef="product_size">
+                <th mat-header-cell *matHeaderCellDef>Product_size</th>
+                <td mat-cell *matCellDef="let element">{{ element.product_size }}</td>
+            </ng-container>
+            <ng-container matColumnDef="product_price">
+                <th mat-header-cell *matHeaderCellDef>Product_price</th>
+                <td mat-cell *matCellDef="let element">{{ element.product_price }}</td>
+            </ng-container>
+            <ng-container matColumnDef="tag">
+                <th mat-header-cell *matHeaderCellDef>Product_tag</th>
+                <td mat-cell *matCellDef="let element">{{ element.tag }}</td>
+            </ng-container>
+            <ng-container matColumnDef="img_url">
+                <th mat-header-cell *matHeaderCellDef>Product_image</th>
+                <td mat-cell *matCellDef="let element">{{ element.img_url }}</td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element; let i=index">
+                    <button class="bg-red-400 p-1 shadow rounded text-white" (click)="removeItem(element._id, i)">Remove</button>
+                </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+            pageSize="5"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>
+
