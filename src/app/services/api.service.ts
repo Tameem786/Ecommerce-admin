@@ -24,6 +24,9 @@ export class ApiService {
   removeOrder(id: string) {
     return this.http.delete(this.apiUrl + 'api/order/' + id);
   }
+  updateOrderStatus(id: string, body: any) {
+    return this.http.put(this.apiUrl + 'api/order/' + id, body);
+  }
 
   getProduct() {
     return this.http.get(this.apiUrl + 'api/products');

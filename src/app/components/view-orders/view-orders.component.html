@@ -4,7 +4,7 @@
     </div>
     <div class="mx-5 mt-10 ">
         <table mat-table [dataSource]="dataSource" class="w-full max-w-full overflow-x-auto">
-            <ng-container matColumnDef="position">
+            <ng-container matColumnDef="no">
                 <th mat-header-cell *matHeaderCellDef> No.</th>
                 <td mat-cell *matCellDef="let i=index">{{ i+1 }}</td>
             </ng-container>
@@ -29,8 +29,30 @@
                     </ul>
                 </td>
             </ng-container>
+            <ng-container matColumnDef="order_status">
+                <th mat-header-cell *matHeaderCellDef>Order_status</th>
+                <td mat-cell *matCellDef="let element">
+                    Current Status: 
+                    {{ 
+                        element.order_status == 0? 'Received':
+                        element.order_status == 25? 'Processing':
+                        element.order_status == 50? 'Shipped':
+                        element.order_status == 75? 'Delivery':
+                        element.order_status == 100? 'Delivered':'None'
+                    }}
+                    <br>
+                    <button mat-button *ngIf="element.order_status !== 75" (click)="changeStatus(element._id, element.order_status)">
+                        Changed to 
+                        {{ 
+                            element.order_status === 0? 'Processing':
+                            element.order_status === 25? 'Shipped':
+                            element.order_status === 50? 'Delivery':'None'
+                        }}
+                    </button>
+                </td>
+            </ng-container>
             <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <th mat-header-cell *matHeaderCellDef>Change Status</th>
                 <td mat-cell *matCellDef="let i=index; let element">
                     <button class="bg-red-400 p-1 shadow rounded text-white" (click)="removeItem(element._id, i)">Remove</button>
                 </td>
